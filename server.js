@@ -74,7 +74,7 @@ function totalWordsCount(room) {
 // 理論値だけで計算すると実際の音源の「ド」(折り返しの合図音)と少しズレるため、
 // 実際に音源を聞きながらこの値を調整してください。プラスにすると表示が遅くなり、
 // マイナスにすると早くなります。
-const REVEAL_DELAY = 1.3;
+const REVEAL_DELAY = 1.5;
 
 function findLapEntry(elapsed) {
   const adjusted = Math.max(0, elapsed - REVEAL_DELAY);
