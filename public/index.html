@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>シャトルワード</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- タイトル / 部屋作成・参加 -->
+<div id="screen-title" class="screen active">
+  <div class="card">
+    <h1>シャトル<br>ワード</h1>
+    <label>名前
+      <input id="input-name" type="text" placeholder="ニックネーム" maxlength="12">
+    </label>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="create">部屋を作る</button>
+      <button class="tab-btn" data-tab="join">部屋に入る</button>
+    </div>
+
+    <div id="tab-create" class="tab-panel active">
+      <button id="btn-create" class="btn-primary">部屋を作成</button>
+    </div>
+    <div id="tab-join" class="tab-panel">
+      <label>部屋コード
+        <input id="input-code" type="text" placeholder="例: A1B2" maxlength="4" style="text-transform:uppercase">
+      </label>
+      <button id="btn-join" class="btn-primary">入室する</button>
+    </div>
+    <p id="title-error" class="error-text"></p>
+  </div>
+</div>
+
+<!-- ロビー -->
+<div id="screen-lobby" class="screen">
+  <div class="card">
+    <h2>部屋コード: <span id="lobby-code" class="room-code"></span></h2>
+    <p class="theme-label">お題: <span id="lobby-theme"></span></p>
+    <p class="sub">このコードを他の参加者に伝えてください(最大10人)</p>
+    <ul id="lobby-players" class="lobby-list"></ul>
+    <button id="btn-start" class="btn-primary" style="display:none;">ゲームスタート</button>
+    <p id="lobby-wait" class="sub">ホストの開始を待っています…</p>
+  </div>
+</div>
+
+<!-- カウントダウン -->
+<div id="screen-countdown" class="screen">
+  <div class="countdown-num" id="countdown-num">5</div>
+  <div class="countdown-label">秒前</div>
+</div>
+
+<!-- ゲーム画面 -->
+<div id="screen-game" class="screen">
+  <audio id="audio-player" src="audio.mp3" preload="auto"></audio>
+  <div class="game-header">
+    <div class="stat-box">
+      <div class="stat-label">レベル</div>
+      <div class="stat-value" id="stat-level">1</div>
+      <div class="stat-label">合計時間</div>
+      <div class="stat-value small" id="stat-time">00:00</div>
+    </div>
+    <div class="stat-box wide">
+      <div class="stat-label">回数</div>
+      <div class="stat-value huge" id="stat-lap">0</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-label">合計単語数</div>
+      <div class="stat-value" id="stat-words">0</div>
+      <div class="stat-label">次のレベルまであと何秒</div>
+      <div class="stat-value small" id="stat-nextlevel">--</div>
+    </div>
+  </div>
+  <div class="theme-banner">お題: <span id="game-theme"></span></div>
+
+  <div id="players-grid" class="players-grid"></div>
+</div>
+
+<!-- 結果画面 -->
+<div id="screen-result" class="screen">
+  <div class="card">
+    <h2>終了</h2>
+    <div id="result-list"></div>
+    <button id="btn-back" class="btn-primary">タイトルに戻る</button>
+  </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="client.js"></script>
+</body>
+</html>
