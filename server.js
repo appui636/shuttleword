@@ -22,7 +22,7 @@ let THEMES = loadThemes();
 // 音源の長さ(秒)。実測値。public/audio.mp3 を差し替えた場合はここも要調整。
 const AUDIO_DURATION = 1335.048;
 // 音源は頭出しの無音などがあるため0:01から再生し、そこから5秒前カウントダウン(音源内の音声)を経て競技開始
-const AUDIO_START_OFFSET = 1;
+const AUDIO_START_OFFSET = 2;
 const COUNTDOWN_SEC = 5;
 // 実際に回数・レベルが進行する時間(音源終了に合わせてぴったり終わるよう正規化)
 const GAME_DURATION = AUDIO_DURATION - AUDIO_START_OFFSET - COUNTDOWN_SEC;
